@@ -12,9 +12,7 @@ module.exports = {
             uri: config.uri
         })
         const $ = cheerio.load(response)
-        // let divList = document.querySelectorAll('.container div')
         let text = $('.container div').text().trim();
-        console.log(text);
 
         if (text == ''){
             throw new Error('Site text was not found')

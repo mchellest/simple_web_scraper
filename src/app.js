@@ -10,7 +10,6 @@ let nowAvailable = ''
 async function run () {
     try {
         const scrapedData = await ScraperService.getSiteText()
-        console.log(scrapedData);
         console.log(new Date().toString(), `Currently available: ${scrapedData.avail}`)
         if(nowAvailable.length === 0) {
             nowAvailable = scrapedData.avail
@@ -19,7 +18,7 @@ async function run () {
             nowAvailable = scrapedData.avail
             await NotificationService.sendEmailNotif(scrapedData.text)
         }
-
+        
         console.log('Next check: ', new Date(Date.now() + config.interval).toString())
         setTimeout(run, config.interval)
     }
@@ -38,5 +37,3 @@ async function run () {
 }
 
 run();
-
-console.log('test')
